@@ -19,12 +19,6 @@ const data = {
     wind: '10 m/s'
 }
 
-const data2 = {
-    temperature: 20,
-    weatherState: WINDY,
-    humidity: 15,
-    wind: '25 m/s'
-}
 
 class WeatherLocation extends Component {
 
@@ -36,12 +30,36 @@ class WeatherLocation extends Component {
         }
     }
 
+    getWeatherState = weather_data => {
+        return SUN
+    }
+
+    getData = weather_data => {
+        const { humidity, temp } = weather_data.main
+        const { speed } = weather_data.wind
+        const weatherState = this.getWeatherState()
+
+        const data = {
+            humidity,
+            temperature: temp,
+            weatherState,
+            wind: `${speed} m/s`,
+        }
+
+        return data
+    }
+
     handleUpdateClick = () => {
 
-        fetch(api_weather)
-        this.setState({
-            data: data2,
+        fetch(api_weather).then( resolve => {
+            return resolve.json()
+        }).then(data =>{
+            const newWeather = this.getData(data)
+            this.setState({
+                data: newWeather,
+            })
         })
+
     }
 
     render() {
