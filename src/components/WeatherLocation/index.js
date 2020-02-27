@@ -26,6 +26,23 @@ class WeatherLocation extends Component {
             city: 'Barcelona',
             data: data,
         }
+        console.log("constructor")
+    }
+
+    componentDidMount() {
+        console.log("componentDidMount")
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("componentDidUpdate")
+    }
+
+    componentWillMount() {
+        console.log("UNSAFE componentWillMount")
+    }
+
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        console.log("UNSAFE componentWillUpdate")
     }
 
     handleUpdateClick = () => {
@@ -42,6 +59,7 @@ class WeatherLocation extends Component {
     }
 
     render() {
+        console.log("render")
         const {city, data} = this.state
         return (
             <div className="weatherLocationCont">
