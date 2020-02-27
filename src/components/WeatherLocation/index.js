@@ -31,18 +31,11 @@ class WeatherLocation extends Component {
 
     componentDidMount() {
         console.log("componentDidMount")
+        this.handleUpdateClick()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("componentDidUpdate")
-    }
-
-    componentWillMount() {
-        console.log("UNSAFE componentWillMount")
-    }
-
-    componentWillUpdate(nextProps, nextState, nextContext) {
-        console.log("UNSAFE componentWillUpdate")
     }
 
     handleUpdateClick = () => {
