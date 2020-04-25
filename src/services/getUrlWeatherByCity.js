@@ -1,5 +1,5 @@
-import { api_key, url_base_weather } from '../constants/api_url'
+import { API_KEY, URL_BASE, WEATHER } from '../constants/api_url'
 
-const getUrlWeatherByCity = city => `${url_base_weather}?q=${city}&appid=${api_key}`
+const getUrlWeatherByCity = city => `${URL_BASE}${WEATHER}?q=${city}&appid=${API_KEY}`
 
 export default getUrlWeatherByCity
