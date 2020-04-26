@@ -29,8 +29,7 @@ class ForecastExtended extends Component {
         }
     }
 
-    componentDidMount() {
-        const { city } = this.props
+    updateCity = city => {
         const url_forecast = getUrlForecastByCity(city)
 
         fetch(url_forecast).then(
@@ -43,6 +42,18 @@ class ForecastExtended extends Component {
                 this.setState({forecastData})
             }
         )
+    }
+
+    componentDidMount() {
+        const { city } = this.props
+        this.updateCity(city)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.city !== this.props.city){
+            this.setState({forecastData:null})
+            this.updateCity(nextProps.city)
+        }
     }
 
     renderForecastItemDays = (forecastData) => {
