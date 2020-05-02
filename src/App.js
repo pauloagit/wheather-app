@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Paper from '@material-ui/core/Paper'
 import AppBar from '@material-ui/core/AppBar'
 import Typography from '@material-ui/core/Typography'
@@ -7,6 +8,7 @@ import { Grid, Col, Row } from 'react-flexbox-grid'
 import LocationList from './components/LocationList'
 import './App.css'
 import ForecastExtended from '../src/components/ForecastExtended'
+import { setCity } from './actions'
 
 const cities = [
   'Caracas, ve,',
@@ -27,10 +29,12 @@ class App extends Component {
     }
 
     handleSelectionLocation = (city) => {
-      console.log(`handleSelectionLocation ${city}`)
         this.setState({
             city
         })
+        console.log(`handleSelectionLocation ${city}`)
+
+        this.props.setCity(city)
     }
 
     render() {
@@ -71,4 +75,10 @@ class App extends Component {
     }
 }
 
-export default App
+const mapDispatchToPropsActions = dispatch => ({
+    setCity: value => dispatch(setCity(value))
+})
+
+const AppConnected = connect(null, mapDispatchToPropsActions)(App)
+
+export default AppConnected
